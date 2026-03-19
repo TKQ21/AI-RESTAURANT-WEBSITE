@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UrbanBite Kitchen | Taste the Future</title>
+  <meta name="description" content="UrbanBite Kitchen – International Fine Dining. AI-curated cuisine with finest ingredients." />
+  <meta name="keywords" content="UrbanBite Kitchen, fine dining, international cuisine, AI restaurant, luxury restaurant" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css">
+  <!-- n8n Chat Widget Styles -->
+  <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar" id="navbar">
+  <div class="nav-brand">
+    <span class="brand-icon">✦</span>
+    <div class="brand-text">
+      <span class="brand-name">UrbanBite Kitchen</span>
+      <span class="brand-sub">AI Restaurant · Est. 2024</span>
+    </div>
+  </div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#order">Order</a></li>
+    <li><a href="#tracking">Track</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="javascript:void(0)" onclick="openAdminLogin()" style="color:var(--orange); font-weight:700;">Admin Panel</a></li>
+  </ul>
+  <a href="#order" class="reserve-btn">Reserve Table</a>
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="home">
+  <canvas id="starCanvas"></canvas>
+  <div class="hero-bg-overlay"></div>
+  <div class="hero-content">
+
+    <h1 class="hero-title reveal">
+      <span class="title-line1">Welcome to</span>
+      <span class="title-line2">UrbanBite Kitchen</span>
+    </h1>
+    <p class="hero-tagline reveal">Taste the <em>Future</em></p>
+    <p class="hero-sub reveal">UrbanBite Kitchen crafts extraordinary experiences through globally inspired flavors,<br class="br-hide"/>premium ingredients, and AI-curated menus.</p>
+    <div class="hero-actions reveal">
+      <a href="#order" class="btn-gold neon-btn">🍽️ Order Now</a>
+      <a href="#menu" class="btn-ghost neon-btn">Explore Menu</a>
+    </div>
+    <div class="hero-stats reveal">
+      <div class="stat"><span class="stat-number">50+</span><span class="stat-label">Dishes</span></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><span class="stat-number">4.9★</span><span class="stat-label">Rating</span></div>
+      <div class="stat-divider"></div>
+      <div class="stat"><span class="stat-number">50K+</span><span class="stat-label">Happy Guests</span></div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="section-label reveal">Our Story</div>
+    <h2 class="section-title reveal">Crafted with <span class="gold">Passion</span>,<br/>Served with <span class="gold">Excellence</span></h2>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p class="about-lead">UrbanBite Kitchen was born from a single belief — that exceptional food is a universal language.</p>
+        <p>Our chefs travel the world seeking rare ingredients and bold techniques, returning to craft menus that are at once surprising and deeply comforting. We pair AI-driven insights on dietary trends with old-world cooking wisdom.</p>
+        <div class="about-badges">
+          <div class="badge-item">🌍 Global Flavors</div>
+          <div class="badge-item">🤖 AI-Curated Menus</div>
+          <div class="badge-item">🌿 Farm-to-Table</div>
+          <div class="badge-item">⭐ Fine Dining Quality</div>
+        </div>
+      </div>
+      <div class="about-chef reveal">
+        <div class="chef-card glass-card">
+          <div class="chef-avatar">👨‍🍳</div>
+          <h3 class="chef-name">Chef Aryan Kapoor</h3>
+          <p class="chef-title">Executive Chef & Culinary Director</p>
+          <p class="chef-bio">Trained in Paris, Tokyo, and New York — Chef Aryan brings 15 years of Michelin-starred experience to every plate. His philosophy: luxury lives in the care.</p>
+          <div class="chef-stats">
+            <span>🏆 15+ Awards</span>
+            <span>🌏 4 Continents</span>
+            <span>🍽️ 200+ Recipes</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MENU ===== -->
+<section class="section dark-section" id="menu">
+  <div class="container">
+    <div class="section-label reveal">Our Menu</div>
+    <h2 class="section-title reveal">A World of <span class="gold">Flavors</span></h2>
+    <p class="section-sub reveal">Live from our inventory — 50+ dishes across all categories</p>
+    <div class="menu-filters reveal" id="menuFilters">
+      <button class="filter-btn active" data-filter="all" onclick="filterMenu('all')">All</button>
+    </div>
+    <div class="menu-search reveal">
+      <input type="text" id="menuSearch" placeholder="🔍  Search dishes, cuisines..." onkeyup="searchItem()" />
+    </div>
+    <div class="menu-grid" id="menuGrid">
+      <div class="menu-skeleton"></div><div class="menu-skeleton"></div>
+      <div class="menu-skeleton"></div><div class="menu-skeleton"></div>
+      <div class="menu-skeleton"></div><div class="menu-skeleton"></div>
+    </div>
+    <div class="load-more-wrap">
+      <button class="btn-ghost" id="loadMoreBtn" style="display:none" onclick="loadMoreMenu()">Load More Dishes</button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ORDER ===== -->
+<section class="section" id="order">
+  <div class="container">
+    <div class="section-label reveal">Place Your Order</div>
+    <h2 class="section-title reveal">Order <span class="gold">Online</span></h2>
+    <div class="order-container">
+      <div class="glass-card order-card reveal">
+        <form id="orderForm">
+          <div class="form-group">
+            <label for="customerName">Your Name</label>
+            <input type="text" id="customerName" placeholder="Enter your full name" required />
+          </div>
+          <div class="form-group">
+            <label for="customerPhone">Phone Number</label>
+            <input type="tel" id="customerPhone" placeholder="+91 XXXXX XXXXX" required />
+          </div>
+          <div class="form-group">
+            <label for="orderItem">Item Name</label>
+            <input type="text" id="orderItem" placeholder="e.g. Butter Chicken, Biryani..." required />
+          </div>
+          <div class="form-group">
+            <label for="orderQty">Quantity</label>
+            <div class="qty-control">
+              <button type="button" class="qty-btn" onclick="changeQty(-1)">−</button>
+              <input type="number" id="orderQty" value="1" min="1" max="50" />
+              <button type="button" class="qty-btn" onclick="changeQty(1)">+</button>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="orderType">Order Type</label>
+            <select id="orderType">
+              <option value="dine-in">Dine In</option>
+              <option value="takeaway">Takeaway</option>
+              <option value="delivery">Home Delivery</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="specialReq">Special Requests</label>
+            <textarea id="specialReq" rows="2" placeholder="Dietary requirements, allergies..."></textarea>
+          </div>
+          <!-- Payment Method Selection -->
+          <div class="form-group" style="margin-top:1.2rem;">
+            <label style="display:block; margin-bottom:0.8rem; color:var(--gold); font-size:0.9rem; font-weight:600;">💳 Payment Method</label>
+            <div style="display:flex; gap:1.5rem; flex-wrap:wrap;">
+              <label style="display:flex; align-items:center; gap:0.6rem; cursor:pointer; padding:0.8rem 1.2rem; border-radius:10px; border:1px solid rgba(255,255,255,0.1); background:rgba(255,255,255,0.03); flex:1; min-width:140px;">
+                <input type="radio" name="payMethod" value="online" checked style="accent-color:var(--orange);" />
+                <span>🔷 Online UPI</span>
+              </label>
+              <label style="display:flex; align-items:center; gap:0.6rem; cursor:pointer; padding:0.8rem 1.2rem; border-radius:10px; border:1px solid rgba(255,255,255,0.1); background:rgba(255,255,255,0.03); flex:1; min-width:140px;">
+                <input type="radio" name="payMethod" value="cod" style="accent-color:var(--orange);" />
+                <span>💵 Cash on Delivery</span>
+              </label>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-gold full-width" id="placeOrderBtn" style="margin-top:1.5rem;">
+            <span id="orderBtnText">🛒 Place Order</span>
+          </button>
+          <div id="successBanner" class="success-banner">
+            <span>✅</span>
+            <span id="successMsg">Order Sent Successfully!</span>
+          </div>
+        </form>
+      </div>
+      <div class="order-confirm glass-card reveal" id="orderConfirm" style="display:none">
+        <div class="confirm-icon">✅</div>
+        <h3>Order Placed Successfully!</h3>
+        <p>Your Order ID</p>
+        <div class="order-id-display" id="orderIdDisplay"></div>
+        <p class="confirm-note">Save this ID to track your order. You'll receive a WhatsApp confirmation shortly!</p>
+        <button class="btn-gold" onclick="goToTracking()">📦 Track My Order</button>
+        <button class="btn-ghost" onclick="showPayment()">💳 Pay Now (UPI)</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TRACKING ===== -->
+<section class="section dark-section" id="tracking">
+  <div class="container">
+    <div class="section-label reveal">Live Tracking</div>
+    <h2 class="section-title reveal">Track Your <span class="gold">Order</span></h2>
+    <div class="tracking-container reveal">
+      <div class="glass-card tracking-card">
+        <div class="track-input-group">
+          <input type="text" id="trackOrderId" placeholder="Enter Order ID (e.g. UBK-12345678)" />
+          <button class="btn-gold" onclick="trackOrder(); track();">Track</button>
+        </div>
+        <div id="trackMsg" style="text-align:center; margin-top:1rem; font-weight:bold; color:var(--gold);"></div>
+        <div id="trackingResult" class="tracking-result" style="display:none">
+          <div class="track-order-info"><span class="track-label">Order ID:</span><span class="track-val" id="trackDisplayId"></span></div>
+          <div class="track-order-info"><span class="track-label">Item:</span><span class="track-val" id="trackDisplayItem"></span></div>
+          <div class="tracking-steps">
+            <div class="track-step" id="step-pending"><div class="step-dot"></div><div class="step-info"><span class="step-title">Order Received</span><span class="step-time">Pending</span></div></div>
+            <div class="track-step" id="step-preparing"><div class="step-dot"></div><div class="step-info"><span class="step-title">Preparing</span><span class="step-time">In Kitchen</span></div></div>
+            <div class="track-step" id="step-ready"><div class="step-dot"></div><div class="step-info"><span class="step-title">Ready / Out for Delivery</span><span class="step-time">Soon</span></div></div>
+            <div class="track-step" id="step-delivered"><div class="step-dot"></div><div class="step-info"><span class="step-title">Delivered</span><span class="step-time">Enjoy! 🎉</span></div></div>
+          </div>
+        </div>
+        <div id="trackingNotFound" style="display:none;text-align:center;padding:2rem;color:rgba(245,245,240,0.5)">
+          <span style="font-size:2.5rem;display:block;margin-bottom:1rem">❌</span>
+          <p>Order ID not found. Please check and try again.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PAYMENT MODAL ===== -->
+<div class="modal-overlay" id="paymentModal">
+  <div class="modal glass-card">
+    <button class="modal-close" onclick="closePayment()">✕</button>
+    <h3 class="modal-title">Complete Payment</h3>
+    <p class="modal-sub">Orders are processed only after **Payment Verification**.<br/>Scan QR or use UPI ID below then tap 'Payment Done'.</p>
+    <div class="qr-container">
+      <div class="qr-placeholder">
+        <img id="qrImg" src="qr.png" alt="PhonePe QR" style="width:200px; height:auto; border-radius:10px;" />
+      </div>
+      <div class="upi-ids">
+        <p>Pay via:</p>
+        <div class="upi-app">📱 PhonePe: <strong>9811350208@axl</strong></div>
+        <div class="upi-app">💚 Google Pay: <strong>9811350208@axl</strong></div>
+        <div class="upi-app">💙 Paytm: <strong>9811350208@axl</strong></div>
+      </div>
+    </div>
+    <div class="payment-amount">Amount: <span id="paymentAmount" class="gold">₹ 0.00</span></div>
+    
+    <div style="margin-top:1.5rem; display:flex; flex-direction:column; gap:1rem;">
+      <div class="input-group">
+        <label style="font-size:0.85rem; color:var(--gold); display:block; margin-bottom:0.5rem; text-align:left;">Enter Transaction ID / UTR Number:</label>
+        <input type="text" id="transactionId" placeholder="12-digit UPI Transaction ID" 
+               style="width:100%; padding:1rem; border-radius:10px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); color:#fff; font-family:monospace; font-size:1rem;" />
+      </div>
+      
+      <div style="padding:1rem; background:rgba(231,76,60,0.1); border-radius:10px; border:1px solid rgba(231,76,60,0.2); text-align:left;">
+        <label style="display:flex; align-items:flex-start; gap:0.8rem; cursor:pointer; font-size:0.85rem; color:rgba(255,255,255,0.8);">
+          <input type="checkbox" id="paymentVerifyCheck" style="margin-top:3px; accent-color:var(--gold);" />
+          <span>I confirm that I have transferred the exact amount to the UPI ID above.</span>
+        </label>
+      </div>
+    </div>
+
+    <button class="btn-gold full-width" id="paymentDoneBtn" onclick="confirmPayment()" style="margin-top:1.5rem;">✅ Confirm & Place Order</button>
+    <div class="payment-success" id="paymentSuccess" style="display:none">
+      <div class="success-icon">🎉</div>
+      <h3>Payment Successful!</h3>
+      <p>Thank you for dining with UrbanBite Kitchen.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== FAQ ===== -->
+<section class="section" id="faq">
+  <div class="container">
+    <div class="section-label reveal">FAQ</div>
+    <h2 class="section-title reveal">Frequently Asked <span class="gold">Questions</span></h2>
+    <div class="faq-container reveal" id="faqContainer">
+      <div class="faq-loading">Loading questions...</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section class="section dark-section" id="contact">
+  <div class="container">
+    <div class="section-label reveal">Get in Touch</div>
+    <h2 class="section-title reveal">Visit <span class="gold">Us</span></h2>
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <div class="contact-item glass-card">
+          <div class="contact-icon">📍</div>
+          <div><h4>Location</h4><p>42, Gulmohar Marg, Connaught Place<br/>New Delhi – 110001, India</p></div>
+        </div>
+        <div class="contact-item glass-card">
+          <div class="contact-icon">📞</div>
+          <div><h4>Phone</h4><p>+91 98113 50208</p><p>+91 11 4567 8900</p></div>
+        </div>
+        <div class="contact-item glass-card">
+          <div class="contact-icon">✉️</div>
+          <div><h4>Email</h4><p>thekaifqureshi21@gmail.com</p></div>
+        </div>
+        <div class="contact-item glass-card">
+          <div class="contact-icon">🕐</div>
+          <div><h4>Hours</h4><p>Mon–Fri: 12 PM – 11 PM</p><p>Sat–Sun: 11 AM – Midnight</p></div>
+        </div>
+
+        <!-- Direction Finder -->
+        <div class="direction-card glass-card">
+          <h4>📍 Get Directions</h4>
+          <p class="dir-sub">Enter your location to get route to our restaurant</p>
+          <div class="dir-input-group">
+            <input type="text" id="userLocation" placeholder="Your city / address / landmark..." />
+            <button class="btn-gold" onclick="getDirections()">Get Directions 🗺️</button>
+          </div>
+          <button class="btn-ghost" onclick="useMyLocation()" style="width:100%;margin-top:0.5rem">📌 Use My Current Location</button>
+        </div>
+      </div>
+
+      <div class="contact-map reveal">
+        <div class="map-embed glass-card" id="mapEmbed">
+          <iframe id="mapFrame"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3502.0814!2d77.2195!3d28.6315!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd5b347eb62d%3A0x52c2b7494e204dce!2sConnaught%20Place%2C%20New%20Delhi!5e0!3m2!1sen!2sin!4v1700000000000"
+            width="100%" height="420" style="border:0;" allowfullscreen loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade" title="UrbanBite Kitchen">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.75rem">
+          <span class="brand-icon" style="font-size:1.5rem;color:var(--gold)">✦</span>
+          <span class="brand-name" style="font-family:var(--font-head);font-size:1.2rem">UrbanBite Kitchen</span>
+        </div>
+        <p>Taste the Future — International Fine Dining, reimagined for the modern world.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#order">Place Order</a></li>
+          <li><a href="#tracking">Track Order</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h4>Contact</h4>
+        <p>+91 98113 50208</p>
+        <p>thekaifqureshi21@gmail.com</p>
+        <p>Connaught Place, New Delhi</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 UrbanBite Kitchen. All rights reserved.</p>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="javascript:void(0)" onclick="openAdminLogin()" style="color:rgba(255,255,255,0.2); margin-left:10px; font-size:0.8rem;">Admin Login</a>
+      </div>
+    </div>
+</footer>
+
+<!-- ===== ADMIN LOGIN MODAL ===== -->
+<div id="adminLoginModal" class="modal-overlay">
+  <div class="login-card">
+    <div class="login-header">
+      <h2>Admin Access</h2>
+      <p>Enter credentials to enter command center</p>
+    </div>
+    <form id="adminLoginForm">
+      <div class="input-group">
+        <label>Username</label>
+        <input type="text" id="adminUser" required placeholder="admin" />
+      </div>
+      <div class="input-group">
+        <label>Password</label>
+        <input type="password" id="adminPass" required placeholder="••••••••" />
+      </div>
+      <p id="adminLoginError" style="color:#e74c3c; font-size:0.8rem; display:none; margin-bottom:1rem;">Invalid credentials. Access denied.</p>
+      <button type="submit" class="btn-gold" style="width:100%">Authenticate 🛡️</button>
+      <button type="button" class="btn-ghost" onclick="closeAdminLogin()" style="width:100%; margin-top:0.5rem;">Cancel</button>
+    </form>
+  </div>
+</div>
+
+<!-- ===== ADMIN DASHBOARD OVERLAY (SIDEBAR VERSION) ===== -->
+<div id="adminDashboard" class="admin-overlay">
+  <aside class="admin-sidebar">
+    <div class="admin-sidebar-logo">
+      <span style="color:var(--orange)">✦</span>
+      <span>Admin Panel</span>
+    </div>
+    <nav class="admin-nav">
+      <div class="admin-nav-item active" onclick="switchAdminTab('dashboard')">
+        <i>🏠</i> <span>Dashboard</span>
+      </div>
+      <div class="admin-nav-item" onclick="switchAdminTab('orders')">
+        <i>🛒</i> <span>Orders</span>
+      </div>
+      <div class="admin-nav-item" onclick="switchAdminTab('chatbot')">
+        <i>🤖</i> <span>Chatbot</span>
+      </div>
+      <div class="admin-nav-item" onclick="switchAdminTab('analytics')">
+        <i>📈</i> <span>Analytics</span>
+      </div>
+      <div class="admin-nav-item" onclick="switchAdminTab('settings')">
+        <i>⚙️</i> <span>Settings</span>
+      </div>
+    </nav>
+    <div class="admin-nav-item" onclick="logoutAdmin()" style="margin-top:auto; border-top:1px solid rgba(255,255,255,0.05)">
+      <i>🚪</i> <span>Logout</span>
+    </div>
+  </aside>
+
+  <main class="admin-main-wrap">
+    <header class="admin-top-bar">
+      <h1>Admin Dashboard</h1>
+      <div style="display:flex; gap:1rem; align-items:center;">
+        <button class="btn-ghost btn-sm" onclick="fetchOrders()" style="padding:0.5rem 1rem; font-size:0.8rem;">🔄 Refresh</button>
+        <button class="btn-close-admin" onclick="closeAdminDashboard()">✕</button>
+      </div>
+    </header>
+
+    <section class="admin-stats-grid">
+      <div class="stat-card orange">
+        <div class="stat-icon">🛒</div>
+        <div class="stat-info">
+          <span class="stat-val" id="statTodayOrders">0</span>
+          <span class="stat-label">Today Orders</span>
+        </div>
+      </div>
+      <div class="stat-card blue">
+        <div class="stat-icon">💬</div>
+        <div class="stat-info">
+          <span class="stat-val" id="statNewMessages">0</span>
+          <span class="stat-label">New Messages</span>
+        </div>
+      </div>
+      <div class="stat-card green">
+        <div class="stat-icon">📊</div>
+        <div class="stat-info">
+          <span class="stat-val" id="statTotalOrders">0</span>
+          <span class="stat-label">Total Orders</span>
+        </div>
+      </div>
+      <div class="stat-card pink">
+        <div class="stat-icon">⏳</div>
+        <div class="stat-info">
+          <span class="stat-val" id="statPendingOrders">0</span>
+          <span class="stat-label">Pending Orders</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="admin-sections-wrap">
+      <!-- Dashboard Section -->
+      <div class="admin-tab-content active-tab" id="adminContentDashboard">
+        <div class="admin-table-header">
+          <h2>Dashboard Overview</h2>
+          <div class="admin-header-actions">
+            <button class="btn-ghost btn-sm">Export CSV</button>
+          </div>
+        </div>
+        <div class="admin-table-container">
+          <table class="admin-table">
+            <!-- Dynamic Headers and Body injected via app.js -->
+          </table>
+        </div>
+      </div>
+
+      <!-- Orders Section -->
+      <div class="admin-tab-content" id="adminContentOrders" style="display:none;">
+        <div class="admin-table-header">
+          <h2>All Orders</h2>
+        </div>
+        <div class="admin-table-container">
+          <table class="admin-table">
+            <!-- Reuse dynamic logic or specific orders view -->
+          </table>
+        </div>
+      </div>
+
+      <!-- Analytics Section -->
+      <div class="admin-tab-content" id="adminContentAnalytics" style="display:none;">
+        <div class="admin-table-header">
+          <h2>Live Analytics Overview</h2>
+        </div>
+        <div class="chart-container" style="position:relative; height:350px; width:100%">
+          <canvas id="adminOrderChart"></canvas>
+        </div>
+        <div style="margin-top:1.5rem; display:grid; grid-template-columns:1fr 1fr; gap:1.5rem;">
+          <div class="stat-card blue" style="padding:1rem;">
+            <small>Peak Time</small><br/><strong>7:00 PM - 9:00 PM</strong>
+          </div>
+          <div class="stat-card orange" style="padding:1rem;">
+            <small>Top Item</small><br/><strong>BBQ Pizza</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chatbot Section -->
+      <div class="admin-tab-content" id="adminContentChatbot" style="display:none;">
+        <div class="admin-table-header">
+          <h2>AI Chatbot Management</h2>
+        </div>
+        <div class="admin-chatbot-panel">
+          <div class="stat-card blue" style="margin-bottom:1.5rem;">
+            <h3>Brain Status: Online</h3>
+            <p>Model: Gemini 2.0 Flash</p>
+          </div>
+          <div class="admin-chat-logs" style="background:rgba(0,0,0,0.3); border-radius:12px; padding:1.5rem; border:1px solid rgba(255,255,255,0.05); min-height:200px;">
+            <p style="color:var(--orange); font-size:0.9rem;">✦ Live Query Log (Simulated)</p>
+            <div style="margin-top:1rem; opacity:0.7; font-size:0.85rem;">
+              [13:30] User: "What is your return policy?"<br/>
+              [13:30] Bot: "We offer a 5-day refund policy..."
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Settings Section -->
+      <div class="admin-tab-content" id="adminContentSettings" style="display:none;">
+        <div class="admin-table-header">
+          <h2>⚙️ Settings</h2>
+        </div>
+
+        <!-- Policy Section -->
+        <div class="glass-card" style="padding:2rem; margin-bottom:2rem; border:1px solid rgba(255,255,255,0.06);">
+          <h3 style="color:var(--orange); margin-bottom:1rem;">📋 Restaurant Policy</h3>
+          <div style="color:rgba(255,255,255,0.7); font-size:0.9rem; line-height:1.9;">
+            <p><strong style="color:var(--gold);">Order Cancellation:</strong> Orders can be cancelled within 5 minutes of placement.</p>
+            <p><strong style="color:var(--gold);">Payment:</strong> Online payments are verified manually. COD orders are accepted subject to availability.</p>
+            <p><strong style="color:var(--gold);">Refund Policy:</strong> Refunds (if applicable) are processed within 5-7 business days to the original payment method.</p>
+            <p><strong style="color:var(--gold);">Delivery:</strong> Estimated delivery time is 30–45 minutes. Delays may occur during peak hours.</p>
+            <p><strong style="color:var(--gold);">Privacy:</strong> Customer data is used only for order processing and is not shared with third parties.</p>
+          </div>
+        </div>
+
+        <!-- Change Credentials Section -->
+        <div class="glass-card" style="padding:2rem; border:1px solid rgba(255,255,255,0.06);">
+          <h3 style="color:var(--orange); margin-bottom:1.5rem;">🔐 Change Admin Credentials</h3>
+          <form id="changeCredForm" onsubmit="changeAdminCreds(event)" style="display:flex; flex-direction:column; gap:1rem; max-width:420px;">
+            <div class="input-group" style="margin:0">
+              <label style="font-size:0.8rem; color:var(--orange); text-transform:uppercase; letter-spacing:1px; display:block; margin-bottom:0.4rem;">Current Password</label>
+              <input type="password" id="currentPass" placeholder="Current password" required
+                style="width:100%; padding:0.9rem 1rem; border-radius:10px; background:rgba(255,255,255,0.04); border:1px solid rgba(243,156,18,0.3); color:#fff; font-size:0.9rem; -webkit-text-fill-color:#fff;" />
+            </div>
+            <div class="input-group" style="margin:0">
+              <label style="font-size:0.8rem; color:var(--orange); text-transform:uppercase; letter-spacing:1px; display:block; margin-bottom:0.4rem;">New Username</label>
+              <input type="text" id="newUsername" placeholder="New username"
+                style="width:100%; padding:0.9rem 1rem; border-radius:10px; background:rgba(255,255,255,0.04); border:1px solid rgba(243,156,18,0.3); color:#fff; font-size:0.9rem; -webkit-text-fill-color:#fff;" />
+            </div>
+            <div class="input-group" style="margin:0">
+              <label style="font-size:0.8rem; color:var(--orange); text-transform:uppercase; letter-spacing:1px; display:block; margin-bottom:0.4rem;">New Password</label>
+              <input type="password" id="newPass" placeholder="New password"
+                style="width:100%; padding:0.9rem 1rem; border-radius:10px; background:rgba(255,255,255,0.04); border:1px solid rgba(243,156,18,0.3); color:#fff; font-size:0.9rem; -webkit-text-fill-color:#fff;" />
+            </div>
+            <div class="input-group" style="margin:0">
+              <label style="font-size:0.8rem; color:var(--orange); text-transform:uppercase; letter-spacing:1px; display:block; margin-bottom:0.4rem;">Confirm New Password</label>
+              <input type="password" id="confirmPass" placeholder="Confirm new password"
+                style="width:100%; padding:0.9rem 1rem; border-radius:10px; background:rgba(255,255,255,0.04); border:1px solid rgba(243,156,18,0.3); color:#fff; font-size:0.9rem; -webkit-text-fill-color:#fff;" />
+            </div>
+            <p id="credMsg" style="font-size:0.85rem; display:none;"></p>
+            <button type="submit" class="btn-gold" style="width:100%; padding:1rem;">🔒 Update Credentials</button>
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<!-- n8n Chat Widget Initialization Scripts in app.js -->
+<script src="app.js"></script>
+</body>
+</html>
