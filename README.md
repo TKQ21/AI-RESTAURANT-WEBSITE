@@ -58,7 +58,7 @@ A premium international-style restaurant website with modern UI, dynamic menu sy
 
 ## 🌍 Live Demo
 
-[Live Website](https://urbanbite-kitchen-restaurant.netlify.app/)
+[Live Website](https://urbanbite-kitchen.netlify.app/)
 
 ---
 
